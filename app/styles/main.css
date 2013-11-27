@@ -6005,17 +6005,29 @@ td.visible-print {
 .control {
   margin: 50px 0 0 0;
 }
-.likert-scale .btn {
+.likert-scale .selection-tag {
+  color: #9a9d9d;
+  font: "proxima-nova";
+  font-weight: bold;
+  font-style: italic;
+  padding: 0 0 10px 0;
+  min-height: 30px;
+  display: block;
+}
+.likert-scale .selection-tag.highlight {
+  color: #4ccae1;
+}
+.likert-scale .range-buttons .btn {
   height: 50px;
   background-color: #d7d8d8;
   border-radius: 3px;
   border: 0;
   margin-right: 3%;
 }
-.likert-scale .btn.active {
+.likert-scale .range-buttons .btn.active {
   background-color: #4ccae1;
 }
-.likert-scale .btn:hover {
+.likert-scale .range-buttons .btn:hover {
   background-color: #9a9d9d;
 }
 .likert-scale .scale-tags {

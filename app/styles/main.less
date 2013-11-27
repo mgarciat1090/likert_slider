@@ -36,21 +36,37 @@
 }
 
 .likert-scale{
-    .btn{
-        height: @slider-height;
-        background-color: @slider-btn-background;
-        border-radius: @slider-border-radius;
-        border: 0;
-        margin-right: 3%;
+    .selection-tag{
+            color: @slider-btn-hover;
+            font: @base-font;
+            font-weight: bold;
+            font-style: italic;
+            padding: 0 0 10px 0;
+            min-height: 30px;
+            display: block;
 
-        &.active{
-            background-color: @slider-btn-active;
+        &.highlight{
+            color: @slider-btn-active;
         }
+    }
 
-        &:hover{
-            background-color: @slider-btn-hover;
+    .range-buttons{
+        .btn{
+            height: @slider-height;
+            background-color: @slider-btn-background;
+            border-radius: @slider-border-radius;
+            border: 0;
+            margin-right: 3%;
+
+            &.active{
+                background-color: @slider-btn-active;
+            }
+
+            &:hover{
+                background-color: @slider-btn-hover;
+            }
+
         }
-
     }
 
     .scale-tags {
