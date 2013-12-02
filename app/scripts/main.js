@@ -1,4 +1,3 @@
-//main
 $(document).ready(function(){
     console.log("make likert");
 
