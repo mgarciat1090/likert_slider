@@ -5997,7 +5997,7 @@ td.visible-print {
   padding: 0.2em 0;
 }
 .jumbotron {
-  margin: 50px auto 0 auto;
+  margin: 50px auto 0px auto;
 }
 /*
     LIKERT SCALE STYLES
