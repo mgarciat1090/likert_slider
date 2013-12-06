@@ -90,7 +90,7 @@
         }
 
         this.getSelected = function(){
-            return base.selected+1;
+            return parseInt(base.selected)+1;
         }
 
         //call the object constructor
