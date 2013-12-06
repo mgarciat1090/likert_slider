@@ -6,8 +6,8 @@
  *  Bootstrap
  */
 
-(function ($) {
-    $.fn.slider = function(options,tags){
+ (function ($) {
+    $.fn.likertSlider = function(options,tags){
         var defaultOptions = {
             random : false,
             stops : 0,
@@ -19,35 +19,35 @@
         'Neutral',
         'I agree',
         'I strongly agree'
-        ]
+        ];
+
 
         var options = $.extend(defaultOptions,options),
-            tags = $.extend(default_tags,tags),
-            buttons = this.find('button'),
-            tag = this.find('.selection-tag'),
-            selected = undefined,
-            clicked = false,
-            self = this;
+        tags = $.extend(default_tags,tags),
+        buttons = this.find('button'),
+        tag = this.find('.selection-tag'),
+        selected = undefined,
+        clicked = false,
+        base = this;
 
         this.initialize = function(){
-
             options.stops = buttons.length;
-            step = 1;
+            options.step = 1;
 
             //attach listeners
             buttons.each(function(iter,btn){
                 $(btn).attr('data-seq',iter)
-                .on('click',self.changeSelectedButton)
-                .on('mouseover',self.hoverButton)
-                .on('mouseout',self.outButton)
+                .on('click',base.changeSelectedButton)
+                .on('mouseover',base.hoverButton)
+                .on('mouseout',base.outButton)
             });
 
             //if we get random = true we set a random element as selected
-            this.selected = (options.random)?Math.round(Math.random()*buttons.length-1):Math.floor(options.stops/2);
+            base.selected = (options.random)?Math.round(Math.random()*buttons.length-1):Math.floor(options.stops/2);
 
             if(options.random){
-                this.switchActiveButton();
-                buttons.eq(this.selected).trigger('click');
+                base.switchActiveButton();
+                buttons.eq(base.selected).trigger('click');
             }
         };
 
@@ -55,7 +55,7 @@
             buttons.each(function(iter,btn){
                 $(btn).removeClass('active')
             });
-            buttons.eq(this.selected).addClass('active');
+            buttons.eq(base.selected).addClass('active');
 
         };
 
@@ -69,28 +69,28 @@
 
         //update the selected button index and then activate the current image
         this.changeSelectedButton = function(e){
-            self.selected = $(e.currentTarget).attr('data-seq');
-            self.switchActiveButton();
-            self.updateTag(self.selected,true);
-            self.clicked = true;
+            base.selected = $(e.currentTarget).attr('data-seq');
+            base.switchActiveButton();
+            base.updateTag(base.selected,true);
+            base.clicked = true;
         };
 
         //customizes mouseover functionality
         this.hoverButton = function(e){
             var hoveredIndex = $(e.currentTarget).attr('data-seq');
-            self.updateTag(hoveredIndex,hoveredIndex === self.selected);
+            base.updateTag(hoveredIndex,hoveredIndex === base.selected);
 
         }
         //customizes mouseout functionality
         this.outButton = function(e){
-            if(self.clicked)
-                self.updateTag(self.selected,true);
+            if(base.clicked)
+                base.updateTag(base.selected,true);
             else
                 tag.html('');
         }
 
         this.getSelected = function(){
-            return self.selected;
+            return (base.clicked)?base.selected+1:undefined;
         }
 
         //call the object constructor
