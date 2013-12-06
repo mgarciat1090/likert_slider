@@ -122,7 +122,7 @@ module.exports = function (grunt) {
       }
     },
     less: {
-      dist: {
+      build: {
         files: {
           '<%= yeoman.app %>/styles/main.css': ['<%= yeoman.app %>/styles/main.less']
         },
@@ -131,6 +131,11 @@ module.exports = function (grunt) {
           sourceMapFilename: '<%= yeoman.app %>/styles/main.css.map',
           sourceMapBasepath: '<%= yeoman.app %>/',
           sourceMapRootpath: '/'
+        }
+      },
+      dist: {
+        files: {
+          '<%= yeoman.app %>/styles/LikertSlider.css': ['<%= yeoman.app %>/styles/likert.less']
         }
       }
     },
@@ -191,9 +196,17 @@ module.exports = function (grunt) {
       }
     },
     cssmin: {
-      dist: {
+      build: {
         files: {
           '<%= yeoman.dist %>/styles/main.css': [
+            '.tmp/styles/{,*/}*.css',
+            '<%= yeoman.app %>/styles/{,*/}*.css'
+          ]
+        }
+      },
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/styles/LikertSlider.css': [
             '.tmp/styles/{,*/}*.css',
             '<%= yeoman.app %>/styles/{,*/}*.css'
           ]
@@ -247,9 +260,16 @@ module.exports = function (grunt) {
       }
     },
     concurrent: {
+      build: [
+        'coffee',
+        'less:build',
+        'imagemin',
+        'svgmin',
+        'htmlmin'
+      ],
       dist: [
         'coffee',
-        'less',
+        'less:dist',
         'imagemin',
         'svgmin',
         'htmlmin'
@@ -290,12 +310,23 @@ module.exports = function (grunt) {
     'clean:dist',
     'copy:server',
     'useminPrepare',
-    'concurrent',
-    'cssmin',
+    'concurrent:build',
+    'cssmin:build',
     'concat',
     'uglify',
     'copy',
     'rev',
+    'usemin'
+  ]);
+
+  grunt.registerTask('dist', [
+    'clean:dist',
+    'useminPrepare',
+    'concurrent:dist',
+    'cssmin:dist',
+    'concat',
+    'uglify',
+    'copy',
     'usemin'
   ]);
 

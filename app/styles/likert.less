@@ -1,0 +1,75 @@
+
+/*
+    LIKERT SCALE STYLES
+*/
+
+@base-font: "proxima-nova";
+@base-font-color : rgb(154,157,157);
+
+@slider-btn-background: #D7D8D8;
+@slider-btn-hover: #9A9D9D;
+@slider-btn-active: #4CCAE1;
+
+
+@slider-width : 15%;
+@slider-height: 50px;
+
+@slider-border-radius: 3px;
+
+.control{
+    margin: 50px 0 0 0;
+
+}
+
+.likert-scale{
+    .selection-tag{
+            color: @slider-btn-hover;
+            font: @base-font;
+            font-weight: bold;
+            font-style: italic;
+            padding: 0 0 10px 0;
+            min-height: 30px;
+            display: block;
+            margin-left: -15px;
+
+        &.highlight{
+            color: @slider-btn-active;
+        }
+    }
+
+    .range-buttons{
+        .btn{
+            height: @slider-height;
+            background-color: @slider-btn-background;
+            border-radius: @slider-border-radius;
+            border: 0;
+            margin-right: 3%;
+
+            &.active{
+                background-color: @slider-btn-active;
+            }
+
+            &:hover{
+                background-color: @slider-btn-hover;
+            }
+
+        }
+    }
+
+    .scale-tags {
+        margin-top: 6px;
+
+        span{
+            color: @base-font-color;
+            font-family: @base-font,Helvetica,"sans-serif";
+            font-size: 12px;
+            padding: 0 4% 0 0;
+
+            &.disagree{text-align:left}
+            &.neutral{text-align:center}
+            &.agree{text-align:right}
+        }
+    }
+
+}
+
