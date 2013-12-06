@@ -90,7 +90,7 @@
         }
 
         this.getSelected = function(){
-            return (base.clicked)?base.selected+1:undefined;
+            return base.selected+1;
         }
 
         //call the object constructor
