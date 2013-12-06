@@ -89,6 +89,10 @@
                 tag.html('');
         }
 
+        this.getSelected = function(){
+            return self.selected;
+        }
+
         //call the object constructor
         this.initialize();
         return this;
